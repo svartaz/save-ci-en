@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "save ci-en",
+  "version": "1.0",
+  "description": "save text and images on ci-en.dlsite.com",
+  "permissions": ["activeTab", "storage", "downloads", "tabs", "scripting"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://ci-en.dlsite.com/creator/*/article/*"],
+      "run_at": "document_idle",
+      "js": ["content.js"]
+    }
+  ]
+}
