@@ -1,10 +1,8 @@
-let urlLastSucceeded = null;
-let repeated = 0;
-
-const [, creatorId, articleId] = document.location.href.match(
-  /^https:\/\/ci-en\.dlsite\.com\/creator\/(\d+)\/article\/(\d+)/,
-);
-if (creatorId || articleId) {
+setTimeout(() => {
+  const [, creatorId, articleId] = document.location.href.match(
+    /^https:\/\/ci-en\.dlsite\.com\/creator\/(\d+)\/article\/(\d+)/,
+  );
+  if (!creatorId || !articleId) return;
   const data = {
     url: document.location.href,
     creatorId,
@@ -15,6 +13,7 @@ if (creatorId || articleId) {
     tags: [...document.querySelectorAll('.c-hashTagList li a')].map((e) =>
       e.textContent.replace(/^#/, ''),
     ),
+    article: document.querySelector('article').innerHTML,
     images: [...document.querySelectorAll('img.file-player-image')].map(
       (e) => e.dataset.raw,
     ),
@@ -29,4 +28,4 @@ if (creatorId || articleId) {
     },
     console.log,
   );
-}
+}, 3000);

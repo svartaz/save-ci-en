@@ -1,4 +1,4 @@
-const root = 'save-ci-en';
+const root = 'ci-en';
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === 'save') {
@@ -29,6 +29,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       chrome.downloads.download({
         url,
         filename: `${directory}/${new URL(url).pathname.split('/').pop()}`,
+        conflictActoin: 'overwrite',
       });
 
     chrome.downloads.download({
